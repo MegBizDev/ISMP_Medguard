@@ -1,3 +1,23 @@
+import streamlit as st
+import pandas as pd
+import os
+
+st.set_page_config(page_title="ISMP MedGuard", page_icon="💊", layout="wide")
+st.title("💊 ISMP MedGuard — Professional Light")
+
+# --- Check what Streamlit can see ---
+st.write("📁 Files available in the app folder:")
+st.write(os.listdir("."))
+
+# --- Try loading the dataset ---
+try:
+    df = pd.read_excel("med_dataset_ISMP_updated.xlsx", engine="openpyxl")
+    st.success("✅ Dataset loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Could not load dataset: {e}")
+    st.stop()
+
+st.dataframe(df.head())
 # ---------- ISMP MedGuard : Professional Light ----------
 import streamlit as st
 import pandas as pd
